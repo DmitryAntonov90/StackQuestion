@@ -1,0 +1,67 @@
+﻿@model StackQuestion.ViewModels.Question.DetailQuestionViewModel
+@using System.Security.Claims;
+@{
+}
+<br />
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="question">
+            <h2>@Model.Question.Subject</h2>
+            <hr />
+            @Html.Raw(Model.Question.Text)
+            @if (User.GetUserName() == Model.Question.Author.UserName)
+            {
+                <div class="pull-left">
+                    <a asp-controller="Question" asp-action="EditQuestion" asp-route-id="@Model.Question.Id"  class="btn btn-navigation">Edit question</a>
+                </div>
+            }
+            <div class="pull-right">
+                <h5>@Model.Question.Status</h5>
+                <a>@Model.Question.Author.UserName</a>
+            </div>
+
+        </div>
+        <br />
+        @if (Model.Question.Answers.Count > 1)
+            {
+            <h3>@Model.Question.Answers.Count <span> Answers</span></h3>
+            <hr />
+        }
+        else if (Model.Question.Answers.Count == 1)
+        {
+            <h3>@Model.Question.Answers.Count <span> Answer</span></h3>
+            <hr />
+        }
+
+        @foreach (var answer in Model.Question.Answers)
+        {
+            <div class="answer">
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div id="display-answer-@answer.Id" class="col-md-11">
+                        @Html.Raw(answer.Message)
+                    </div>
+                </div>
+                @if(User.GetUserName() == answer.Author.UserName)
+                {
+                    <button id="showEditAnswer" onclick="editAnswer(@answer.Id)" class="btn btn-navigation">Edit asnwer</button>
+                }
+                <hr />
+            </div>
+        }
+
+        <h3>Your Answer</h3>
+        <br />
+        <form asp-controller="Question" asp-action="AddAnswer" asp-route-id="@Model.Question.Id" class="form-horizontal" role="form">
+            <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+            <div class="row col-md-offset-2 col-md-8">
+                <textarea asp-for="Answer"></textarea>
+            </div>
+            <div class="row col-md-offset-2 col-md-8">
+                <br />
+                <input type="submit" class="btn btn-navigation" value="Post your answer" />
+            </div>
+        </form>
+    </div>
+</div>

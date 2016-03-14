@@ -1,0 +1,59 @@
+﻿.btn {
+    border-radius: 0;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
+code {
+    border-radius: 0;
+}
+
+.panel {
+    border-radius: 0;
+}
+
+.btn-navigation {
+    background-color: #7B7F85;
+    color: white;
+}
+
+    .btn-navigation:hover {
+        color: white;
+        background-color: #077891;
+    }
+
+.active {
+    background-color: #077891;
+}
+
+.glyphicon {
+    font-size: 25px;
+}
+
+.useful {
+    color: #7B7F85;
+}
+
+.useful:hover {
+        color: #077891;
+}
+.page-first{
+    margin-right:2em;
+}
+
+.page-last{
+    margin-left:2em;
+}
+
+.question{
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
+.visability{
+    visibility:hidden;
+}
+
+

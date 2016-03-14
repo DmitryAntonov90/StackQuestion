@@ -1,0 +1,33 @@
+﻿@model StackQuestion.Models.Question
+@{
+    ViewBag.Title = "Edit question";
+}
+
+<h2 class="text-center" style="margin-top:2.5em;">Edit Question @Model.Subject</h2>
+
+<form asp-controller="Question" asp-action="EditQuestion" class="form-horizontal" method="post" style="margin-top: 5em;">
+    <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Subject" class="control-label col-md-2"></label>
+        <div class="col-md-8">
+            <input asp-for="Subject" class="form-control" />
+            <span asp-validation-for="Subject" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Text" class="control-label col-md-2"></label>
+        <div class="col-md-8">
+            <textarea asp-for="Text" class="form-control" >@Model.Text</textarea>
+            <span asp-validation-for="Text" class="text-danger"></span>
+        </div>
+    </div>
+
+    <input type="submit" value="Edit question" class="btn btn-navigation center-block" />
+
+</form>
+
+

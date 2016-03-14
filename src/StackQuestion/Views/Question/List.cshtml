@@ -1,0 +1,42 @@
+﻿@using System.Security.Claims
+@model StackQuestion.ViewModels.Question.QuestionViewModel
+
+@{
+    ViewBag.Title = "Questions";
+}
+
+<h2>Top Question</h2>
+<hr/>
+
+@foreach (var question in Model.Questions)
+{
+    <div class="row">
+        <div class="col-md-1">
+            <h3 class="text-center">@question.Votes</h3>
+            <h5 class="text-center">votes</h5>
+        </div>
+        <div class="col-md-1">
+            <h3 class="text-center">@question.Answers.Count</h3>
+            <h5 class="text-center">answers</h5>
+        </div>
+        <div class="col-md-1">
+            <h3 class="text-center">@question.Views</h3>
+            <h5 class="text-center">Views</h5>
+        </div>
+        <div class="col-md-9">
+            <h3><a asp-controller="Question" asp-action="Detail" asp-route-id="@question.Id">@question.Subject</a></h3>
+            <div class="pull-left">
+                @foreach(var tag in question.QuestionTags.Select(x => x.Tag))
+                {
+                    <a asp-controller="Question" asp-action="List" asp-route-tag="@tag.Title" class="btn btn-navigation btn-xs">@tag.Title</a>
+                }
+            </div>
+            <div class="pull-right">@question.Status <a>@question.Author.UserName</a></div>
+        </div>
+    </div>
+    <hr />
+}
+
+<pager current-page="Model.PageInfo.CurrentPage" total-pages="Model.PageInfo.TotalPages"></pager>
+
+

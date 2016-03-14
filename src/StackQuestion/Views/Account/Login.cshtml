@@ -1,0 +1,39 @@
+﻿@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<form class="form-horizontal" asp-controller="Account" asp-action="Login" method="post">
+    <div asp-validation-summary="ValidationSummary.All" class="text-danger" />
+
+    <div class="form-group">
+        <label class="control-label col-md-offset-2 col-md-2" asp-for="Email"></label>
+        <div class="col-md-8">
+            <input asp-for="Email" class="form-control" style="max-width:280px;" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-offset-2 col-md-2" asp-for="Password"></label>
+        <div class="col-md-8">
+            <input asp-for="Password" class="form-control" style="max-width:280px;" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-offset-2 col-md-2" asp-for="RememberMe"></label>
+        <div class="col-md-8">
+            <input asp-for="RememberMe" class="form-control" style="width:25px; height:25px;" />
+            <span asp-validation-for="RememberMe" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-2">
+            <button type="submit" class="btn btn-success">Login</button>
+            <a class="btn btn-default" asp-controller="Question" asp-action="List">Cancel</a>
+        </div>
+    </div>
+</form>
